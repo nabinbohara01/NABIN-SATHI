@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10172a">
+<title>NABIN SATHI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#10172a;color:#f8fafc}
+header{padding:25px 18px;background:linear-gradient(135deg,#1d4ed8,#0f766e)}
+header h1{margin:0;font-size:29px}
+header p{margin-bottom:0;color:#e0f2fe}
+main{max-width:700px;margin:auto;padding:16px}
+nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+button,.link{border:0;border-radius:12px;padding:13px;background:#263653;color:white;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block;margin:3px}
+section{display:none;margin-top:18px;padding:17px;background:#19243a;border:1px solid #34445f;border-radius:17px}
+section.active{display:block}
+input,select{width:100%;padding:12px;margin:7px 0 12px;border-radius:10px;border:1px solid #475569;background:#10172a;color:white;font-size:16px}
+.action{background:#0d9488}
+.result{padding:12px;background:#10172a;border-radius:10px;margin:8px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.small{font-size:13px;color:#bac6dc}
+footer{text-align:center;color:#94a3b8;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<h1>🇳🇵 NABIN SATHI</h1>
+<p>Nepali ko Japan Life Helper 🇯🇵</p>
+</header>
+<main>
+<nav>
+<button onclick="show('chat')">🤖 AI Chat</button>
+<button onclick="show('jobs')">💼 Job Helper</button>
+<button onclick="show('japanese')">🇯🇵 Japanese Buddy</button>
+<button onclick="show('money')">💴 Money Tracker</button>
+<button onclick="show('safety')">🛡️ Scam Safety</button>
+</nav>
+
+<section id="chat" class="active">
+<h2>🤖 NABIN SATHI Chat</h2>
+<div id="chatlog" class="result">NABIN SATHI: Namaste bro! 😊 Japanese, job wa paisa bare sodha hai.</div>
+<input id="message" placeholder="Nepali maa question lekh...">
+<button class="action" onclick="chat()">Send ➤</button>
+<p class="small">Yo ahile demo chat ho. Real AI connect bhayeko chaina.</p>
+</section>
+
+<section id="jobs">
+<h2>💼 Japan Job Helper</h2>
+<p>Japan ko job search garna tala ko links khola.</p>
+<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=Yokohama+night+shift+part+time+jobs">🌙 Night shift jobs</a>
+<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=Indeed+Japan+アルバイト">🔎 Indeed Japan</a>
+<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=タウンワーク+横浜+アルバイト">📍 Townwork Yokohama</a>
+<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=外国人+アルバイト+横浜">📝 Jobs for foreigners</a>
+<div class="result">⚠️ Job pauna agadi paisa magne, salary lukaaune wa contract nadine company bata saavdhan hau.</div>
+</section>
+
+<section id="japanese">
+<h2>🇯🇵 Japanese Buddy</h2>
+<input id="jword" placeholder="Example: arigatou">
+<button class="action" onclick="translateWord()">Meaning hera</button>
+<div id="jresult" class="result">Japanese word ko Nepali meaning yaha aauchha.</div>
+</section>
+
+<section id="money">
+<h2>💴 Money Tracker</h2>
+<label>Income wa Expense</label>
+<select id="kind"><option value="income">Income (+)</option><option value="expense">Expense (-)</option></select>
+<label>Amount (¥)</label>
+<input id="amount" type="number" min="1" placeholder="Example: 100000">
+<label>Description</label>
+<input id="desc" placeholder="Salary, rent, food...">
+<button class="action" onclick="addMoney()">Save record</button>
+<div class="result">Income: <b id="income">¥0</b></div>
+<div class="result">Expense: <b id="expense">¥0</b></div>
+<div class="result">Balance: <b id="balance">¥0</b></div>
+<div id="records"></div>
+<button onclick="clearMoney()">Delete all records</button>
+<p class="small">Data yo browser maa matra save hunchha. Browser data clear bhaye harna sakchha.</p>
+</section>
+
+<section id="safety">
+<h2>🛡️ Scam Safety</h2>
+<div class="result">✅ Company ra job contract verify gara.</div>
+<div class="result">🚫 Job pauna advance paisa napathaau.</div>
+<div class="result">🔐 Bank password, PIN ra verification code kasailai nadeu.</div>
+<div class="result">📄 Kaam garnu agadi visa ko work permission ra rules bujha.</div>
+</section>
+<footer>NABIN SATHI · Made with ❤️ for Nepali people in Japan</footer>
+</main>
+
+<script>
+function show(id){
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+function chat(){
+let el=document.getElementById('message'),m=el.value.trim();
+if(!m)return;
+let t=m.toLowerCase(),a='Ma ahile demo version ho bro. Real AI connect bhayepachhi timro question ko jawab dina sakchhu.';
+if(t.includes('job')||t.includes('काम'))a='Job Helper kholera job-search links hera. Apply garnu agadi company ra salary verify gara.';
+else if(t.includes('japanese')||t.includes('nihongo'))a='Japanese Buddy maa Japanese word lekh ani meaning hera.';
+else if(t.includes('paisa')||t.includes('money'))a='Money Tracker maa income ra expense save garera balance herna sakchhau.';
+else if(t.includes('namaste')||t.includes('hello'))a='Namaste bro! 😊 Ma NABIN SATHI ho. Timilai Japanese, job ra money management maa help garna baneko demo ho.';
+let log=document.getElementById('chatlog');
+log.textContent+='\n\nTimi: '+m+'\n\nNABIN SATHI: '+a;
+el.value='';
+}
+const words={
+'arigatou':'ありがとう — धन्यवाद',
+'ohayou':'おはよう — शुभ प्रभात',
+'konnichiwa':'こんにちは — नमस्ते',
+'sumimasen':'すみません — माफ गर्नुहोस् / Excuse me',
+'shigoto':'しごと（仕事）— काम',
+'yasumi':'やすみ（休み）— बिदा / आराम',
+'genki':'げんき（元気）— सन्चै',
+'gakkou':'がっこう（学校）— स्कूल',
+'benkyou':'べんきょう（勉強）— पढाइ',
+'okane':'おかね（お金）— पैसा',
+'daijoubu':'だいじょうぶ — ठीक छ',
+'tasukete':'たすけて — मद्दत गर्नुहोस्',
+'ohayou gozaimasu':'おはようございます — शुभ प्रभात'
+};
+function translateWord(){
+let w=document.getElementById('jword').value.trim().toLowerCase();
+document.getElementById('jresult').textContent=words[w]||'Yo word demo dictionary maa chaina. Spelling check gara.';
+}
+function getRecords(){
+try{return JSON.parse(localStorage.getItem('nabinSathiMoneyRecordsV1')||'[]')}catch(e){return []}
+}
+function yen(n){return '¥'+Number(n).toLocaleString('en-US')}
+function renderMoney(){
+let arr=getRecords(),inc=0,exp=0;
+arr.forEach(r=>{if(r.kind==='income')inc+=r.amount;else exp+=r.amount});
+document.getElementById('income').textContent=yen(inc);
+document.getElementById('expense').textContent=yen(exp);
+document.getElementById('balance').textContent=yen(inc-exp);
+document.getElementById('records').innerHTML=arr.slice().reverse().map((r,i)=>
+'<div class="result">'+(r.kind==='income'?'➕ ':'➖ ')+yen(r.amount)+' — '+safe(r.desc)+'<br><span class="small">'+safe(r.date)+'</span> <button onclick="deleteMoney('+(arr.length-1-i)+')">Delete</button></div>'
+).join('');
+}
+function safe(s){
+return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function addMoney(){
+let amount=Number(document.getElementById('amount').value);
+let desc=document.getElementById('desc').value.trim();
+if(!Number.isFinite(amount)||amount<=0){alert('Amount halnu hai bro.');return}
+let arr=getRecords();
+arr.push({kind:document.getElementById('kind').value,amount,desc:desc||'No description',date:new Date().toLocaleDateString()});
+try{
+localStorage.setItem('nabinSathiMoneyRecordsV1',JSON.stringify(arr));
+renderMoney();
+document.getElementById('amount').value='';
+document.getElementById('desc').value='';
+alert('Record saved!');
+}catch(e){alert('Browser le data save garna diyena.')}
+}
+function deleteMoney(i){
+let arr=getRecords();arr.splice(i,1);
+localStorage.setItem('nabinSathiMoneyRecordsV1',JSON.stringify(arr));renderMoney();
+}
+function clearMoney(){
+if(confirm('Sabai records delete garne?')){
+localStorage.setItem('nabinSathiMoneyRecordsV1','[]');renderMoney();
+}
+}
+renderMoney();
+</script>
+</body>
+</html>
