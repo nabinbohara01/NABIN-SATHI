@@ -12,7 +12,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;back
 header{padding:30px 20px;background:linear-gradient(135deg,#2563eb,#0d9488);border-radius:0 0 28px 28px;box-shadow:0 10px 35px #0004}
 header h1{margin:0;font-size:30px}
 header p{margin:8px 0 0;color:#e0f2fe}
-main{max-width:760px;margin:auto;padding:18px 14px}
+main{max-width:800px;margin:auto;padding:18px 14px}
 .welcome,section{background:#ffffff08;border:1px solid #ffffff17;border-radius:20px;padding:18px;margin-bottom:17px}
 .welcome h2{margin:0 0 8px}
 nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -24,6 +24,7 @@ section.active{display:block}
 h2{font-size:21px;margin-top:0}
 h3{font-size:16px}
 input,select{width:100%;padding:13px;margin:8px 0 13px;border-radius:11px;border:1px solid #3b4b65;background:#0b1324;color:white;font-size:16px}
+label{font-size:13px;color:#cbd5e1}
 .result,.jobcard{padding:13px;background:#0b1426;border:1px solid #ffffff10;border-radius:13px;margin:10px 0;line-height:1.6;overflow-wrap:anywhere}
 .jobcard h3{margin:0 0 6px}
 .small{font-size:12px;color:#aab9d0}
@@ -32,6 +33,7 @@ footer{text-align:center;color:#94a3b8;padding:25px 8px;font-size:12px}
 .dev-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2563eb,#0d9488);font-size:30px;font-weight:800}
 .dev-name{font-size:21px;font-weight:800;letter-spacing:1px;margin:8px 0}
 .dev-role{color:#5eead4;font-weight:600}
+.notice{padding:12px;border-radius:11px;background:#f59e0b12;border:1px solid #f59e0b40;font-size:13px;line-height:1.6}
 @media(min-width:540px){nav{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -64,31 +66,107 @@ Japan maa job, Japanese ra paisa manage garna timro sathi ❤️
 </section>
 
 <section id="jobs">
-<h2>💼 Japan Job Helper</h2>
-<p>Shift ra location chhana. Links le job-search results kholchhan, confirmed vacancy hoina.</p>
-<h3>📍 Shin-Yokohama Station</h3>
-<div class="jobcard">
-<h3>☀️ Day Shift Jobs</h3>
-<p>Warehouse, packing, cleaning ra daytime part-time.</p>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=新横浜駅+日勤+アルバイト+求人">Day shift khoja ↗</a>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=新横浜+倉庫+仕分け+日勤">Warehouse / packing ↗</a>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=新横浜+外国人+アルバイト+日勤">Foreigner-friendly ↗</a>
+<h2>💼 Japan Nationwide Job Search</h2>
+<p>Japan ko kunai pani prefecture wa city chhana ani job search gara.</p>
+
+<label for="pref">📍 Prefecture</label>
+<select id="pref">
+<option value="">Japan bhar / All Japan</option>
+<option>Hokkaido</option>
+<option>Aomori</option><option>Iwate</option><option>Miyagi</option>
+<option>Akita</option><option>Yamagata</option><option>Fukushima</option>
+<option>Ibaraki</option><option>Tochigi</option><option>Gunma</option>
+<option>Saitama</option><option>Chiba</option><option>Tokyo</option>
+<option>Kanagawa</option><option>Niigata</option><option>Toyama</option>
+<option>Ishikawa</option><option>Fukui</option><option>Yamanashi</option>
+<option>Nagano</option><option>Gifu</option><option>Shizuoka</option>
+<option>Aichi</option><option>Mie</option><option>Shiga</option>
+<option>Kyoto</option><option>Osaka</option><option>Hyogo</option>
+<option>Nara</option><option>Wakayama</option><option>Tottori</option>
+<option>Shimane</option><option>Okayama</option><option>Hiroshima</option>
+<option>Yamaguchi</option><option>Tokushima</option><option>Kagawa</option>
+<option>Ehime</option><option>Kochi</option><option>Fukuoka</option>
+<option>Saga</option><option>Nagasaki</option><option>Kumamoto</option>
+<option>Oita</option><option>Miyazaki</option><option>Kagoshima</option>
+<option>Okinawa</option>
+</select>
+
+<label for="city">🏙️ City / Station (optional)</label>
+<input id="city" placeholder="Example: Yokohama, Shinjuku, Osaka">
+
+<label for="jobtype">💼 Job type</label>
+<select id="jobtype">
+<option value="">All job types</option>
+<option value="倉庫">Warehouse / 倉庫</option>
+<option value="仕分け">Parcel sorting / 仕分け</option>
+<option value="梱包">Packing / 梱包</option>
+<option value="食品工場">Food factory / 食品工場</option>
+<option value="弁当">Bento packing / 弁当</option>
+<option value="清掃">Cleaning / 清掃</option>
+<option value="ホテル">Hotel / ホテル</option>
+<option value="コンビニ">Convenience store / コンビニ</option>
+<option value="飲食店">Restaurant / 飲食店</option>
+<option value="データ入力">Data entry / データ入力</option>
+<option value="引越し">Moving / 引越し</option>
+<option value="Amazon 倉庫">Amazon warehouse</option>
+<option value="ヤマト 仕分け">Yamato sorting</option>
+<option value="フォークリフト">Forklift / フォークリフト</option>
+<option value="介護">Care work / 介護</option>
+<option value="工場">Factory / 工場</option>
+</select>
+
+<label for="shift">🌙 Shift</label>
+<select id="shift">
+<option value="">Any shift</option>
+<option value="日勤">Day shift / 日勤</option>
+<option value="夜勤">Night shift / 夜勤</option>
+<option value="夕勤">Evening shift / 夕勤</option>
+<option value="早朝">Early morning / 早朝</option>
+</select>
+
+<label for="wage">💴 Minimum hourly wage</label>
+<select id="wage">
+<option value="">Any wage</option>
+<option value="1200">¥1,200 per hour</option>
+<option value="1300">¥1,300 per hour</option>
+<option value="1400">¥1,400 per hour</option>
+<option value="1500">¥1,500 per hour</option>
+<option value="1600">¥1,600 per hour</option>
+<option value="1800">¥1,800 per hour</option>
+</select>
+
+<label for="employment">📝 Employment type</label>
+<select id="employment">
+<option value="">All employment types</option>
+<option value="アルバイト">Part-time / アルバイト</option>
+<option value="パート">Part / パート</option>
+<option value="正社員">Full-time / 正社員</option>
+<option value="派遣">Dispatch / 派遣</option>
+<option value="短期">Short-term / 短期</option>
+</select>
+
+<button class="action" style="width:100%;margin:8px 0" onclick="searchJobs()">🔎 Search Jobs</button>
+<button style="width:100%;margin:3px 0" onclick="resetJobs()">Reset filters</button>
+
+<div class="notice">
+⚠️ यी cards ले job websites मा खोज खोल्छन्; यी आफैँ पुष्टि भएका vacancy होइनन्। वास्तविक कम्पनी, तलब, काम गर्ने समय र आवेदनको अन्तिम मिति मूल listing मा जाँच्नुहोस्।
 </div>
+
+<h3>🔎 Job search results</h3>
+<div id="jobresults">
 <div class="jobcard">
-<h3>🌙 Night Shift Jobs</h3>
-<p>Night warehouse, sorting ra cleaning.</p>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=新横浜駅+夜勤+アルバイト+求人">Night shift khoja ↗</a>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=新横浜+夜勤+倉庫+仕分け">Night warehouse ↗</a>
+<h3>🇯🇵 Japan-wide job search</h3>
+<p>Filter छानेर Search Jobs थिच्नुहोस्। Indeed, Townwork र Hello Work का search links तयार हुन्छन्।</p>
 </div>
-<h3>📍 Yokohama Day Shift</h3>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=横浜+日勤+アルバイト+求人">Yokohama day jobs ↗</a>
-<h3>📍 Yokohama Night Shift</h3>
-<a class="link" target="_blank" rel="noopener" href="https://www.google.com/search?q=横浜+夜勤+アルバイト+求人">Yokohama night jobs ↗</a>
-<h3>🔎 Job Websites</h3>
+</div>
+
+<h3>🌐 Popular job websites</h3>
 <a class="link" target="_blank" rel="noopener" href="https://jp.indeed.com/">Indeed Japan ↗</a>
 <a class="link" target="_blank" rel="noopener" href="https://townwork.net/">Townwork ↗</a>
 <a class="link" target="_blank" rel="noopener" href="https://www.hellowork.mhlw.go.jp/">Hello Work ↗</a>
-<div class="result">⚠️ Salary, shift ra company verify gara. Job pauna advance paisa napathaau. Student visa ko work permission ra hour limit follow gara.</div>
+<a class="link" target="_blank" rel="noopener" href="https://baito.mynavi.jp/">Mynavi Baito ↗</a>
+
+<div class="result">💡 Job pauna advance paisa napathaau. Student visa ko work permission ra kaam garna milne hour limit follow gara.</div>
 </section>
 
 <section id="japanese">
@@ -161,13 +239,92 @@ function chat(){
 let el=document.getElementById('message'),m=el.value.trim();
 if(!m)return;
 let t=m.toLowerCase(),a='Ma demo chat ho bro. Real AI connect bhayepachhi intelligent jawab dina sakchhu.';
-if(t.includes('job')||t.includes('काम'))a='Job Helper kholera Shin-Yokohama day shift wa night shift chhana.';
+if(t.includes('job')||t.includes('काम'))a='Job Helper kholera location, shift ra job type chhana.';
 else if(t.includes('japanese')||t.includes('nihongo'))a='Japanese Buddy maa romaji lekh ani meaning hera.';
 else if(t.includes('paisa')||t.includes('money'))a='Money Tracker maa income ra expense save gara.';
 else if(t.includes('namaste')||t.includes('hello'))a='Namaste bro! 😊 NABIN SATHI maa swagat chha!';
 let log=document.getElementById('chatlog');
 log.textContent+='\n\nTimi: '+m+'\nNABIN SATHI: '+a;
 el.value='';
+}
+
+function searchJobs(){
+const pref=document.getElementById('pref').value;
+const city=document.getElementById('city').value.trim();
+const type=document.getElementById('jobtype').value;
+const shift=document.getElementById('shift').value;
+const wage=document.getElementById('wage').value;
+const employment=document.getElementById('employment').value;
+
+const location=[city,pref].filter(Boolean).join(' ');
+let terms=[location,type,shift,employment].filter(Boolean);
+if(wage)terms.push('時給'+wage+'円以上');
+terms.push('求人');
+
+const query=terms.join(' ');
+const encoded=encodeURIComponent(query);
+const results=[
+{
+name:'Indeed Japan',
+desc:'विभिन्न कम्पनीका job-search results',
+url:'https://jp.indeed.com/jobs?q='+encodeURIComponent([type,shift,employment,wage?'時給'+wage+'円以上':''].filter(Boolean).join(' '))+'&l='+encodeURIComponent(location)
+},
+{
+name:'Townwork',
+desc:'Part-time र अन्य job-search results',
+url:'https://www.google.com/search?q='+encodeURIComponent('site:townwork.net '+query)
+},
+{
+name:'Mynavi Baito',
+desc:'Baito / part-time job-search results',
+url:'https://www.google.com/search?q='+encodeURIComponent('site:baito.mynavi.jp '+query)
+},
+{
+name:'Hello Work',
+desc:'Public employment service खोज',
+url:'https://www.google.com/search?q='+encodeURIComponent('site:hellowork.mhlw.go.jp '+query)
+}
+];
+
+const box=document.getElementById('jobresults');
+box.innerHTML='';
+
+const heading=document.createElement('div');
+heading.className='result';
+heading.textContent='🔎 Search: '+(query||'Japan-wide jobs')+' — तलका साइटहरूमा नतिजा खोल्नुहोस्।';
+box.appendChild(heading);
+
+results.forEach(r=>{
+const card=document.createElement('div');
+card.className='jobcard';
+
+const h=document.createElement('h3');
+h.textContent='💼 '+r.name;
+
+const p=document.createElement('p');
+p.textContent=r.desc+'। यो source मा job details जाँच गर्नुहोस्।';
+
+const a=document.createElement('a');
+a.className='link';
+a.href=r.url;
+a.target='_blank';
+a.rel='noopener';
+a.textContent='Vacancies खोज्नुहोस् ↗';
+
+card.append(h,p,a);
+box.appendChild(card);
+});
+
+const note=document.createElement('p');
+note.className='small';
+note.textContent='नोट: NABIN SATHI ले अहिले external search links बनाउँछ। Live vacancy database/API जोडिएको छैन।';
+box.appendChild(note);
+}
+
+function resetJobs(){
+['pref','jobtype','shift','wage','employment'].forEach(id=>document.getElementById(id).value='');
+document.getElementById('city').value='';
+document.getElementById('jobresults').innerHTML='<div class="jobcard"><h3>🇯🇵 Japan-wide job search</h3><p>Filter छानेर Search Jobs थिच्नुहोस्।</p></div>';
 }
 
 const words={
