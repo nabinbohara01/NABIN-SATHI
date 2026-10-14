@@ -28,6 +28,10 @@ input,select{width:100%;padding:13px;margin:8px 0 13px;border-radius:11px;border
 .jobcard h3{margin:0 0 6px}
 .small{font-size:12px;color:#aab9d0}
 footer{text-align:center;color:#94a3b8;padding:25px 8px;font-size:12px}
+.dev-card{text-align:center;padding:22px 14px;background:linear-gradient(145deg,#172c48,#102b2b);border:1px solid #ffffff20;border-radius:18px;margin:14px 0}
+.dev-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2563eb,#0d9488);font-size:30px;font-weight:800}
+.dev-name{font-size:21px;font-weight:800;letter-spacing:1px;margin:8px 0}
+.dev-role{color:#5eead4;font-weight:600}
 @media(min-width:540px){nav{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -41,12 +45,14 @@ footer{text-align:center;color:#94a3b8;padding:25px 8px;font-size:12px}
 <h2>Namaste bro! 👋</h2>
 Japan maa job, Japanese ra paisa manage garna timro sathi ❤️
 </div>
+
 <nav>
 <button onclick="show('chat')">🤖 AI Chat</button>
 <button onclick="show('jobs')">💼 Job Helper</button>
 <button onclick="show('japanese')">🇯🇵 Japanese Buddy</button>
 <button onclick="show('money')">💴 Money Tracker</button>
 <button onclick="show('safety')">🛡️ Scam Safety</button>
+<button onclick="show('developers')">👨‍💻 Developers</button>
 </nav>
 
 <section id="chat" class="active">
@@ -97,7 +103,10 @@ Japan maa job, Japanese ra paisa manage garna timro sathi ❤️
 <section id="money">
 <h2>💴 Money Tracker</h2>
 <label>Income wa Expense</label>
-<select id="kind"><option value="income">Income (+)</option><option value="expense">Expense (-)</option></select>
+<select id="kind">
+<option value="income">Income (+)</option>
+<option value="expense">Expense (-)</option>
+</select>
 <label>Amount (¥)</label>
 <input id="amount" type="number" min="1" placeholder="Example: 100000">
 <label>Description</label>
@@ -119,14 +128,35 @@ Japan maa job, Japanese ra paisa manage garna timro sathi ❤️
 <div class="result">🔐 Bank password, PIN ra verification code nadeu.</div>
 <div class="result">📄 Kaam agadi visa ko work permission bujha.</div>
 </section>
+
+<section id="developers">
+<h2>👨‍💻 Developers</h2>
+<div class="dev-card">
+<div class="dev-avatar">BN</div>
+<div class="dev-name">BOHARA NABIN</div>
+<p class="dev-role">Founder &amp; Developer 🇳🇵</p>
+<p>Creator of NABIN SATHI</p>
+<p class="small">Building helpful tools for Nepali people in Japan.</p>
+</div>
+<div class="dev-card">
+<div class="dev-avatar">🤖</div>
+<div class="dev-name">ChatGPT</div>
+<p class="dev-role">AI Assistance · OpenAI</p>
+<p class="small">Assisted with ideas and coding.</p>
+</div>
+<p class="small" style="text-align:center">Thank you for using NABIN SATHI ❤️</p>
+</section>
+
 <footer>NABIN SATHI · Made with ❤️ for Nepali people in Japan</footer>
 </main>
+
 <script>
 function show(id){
-document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 window.scrollTo({top:0,behavior:'smooth'});
 }
+
 function chat(){
 let el=document.getElementById('message'),m=el.value.trim();
 if(!m)return;
@@ -139,6 +169,7 @@ let log=document.getElementById('chatlog');
 log.textContent+='\n\nTimi: '+m+'\nNABIN SATHI: '+a;
 el.value='';
 }
+
 const words={
 'arigatou':'ありがとう — धन्यवाद',
 'ohayou':'おはよう — शुभ प्रभात',
@@ -164,10 +195,12 @@ const words={
 'byouin':'びょういん（病院）— अस्पताल',
 'kaisha':'かいしゃ（会社）— कम्पनी'
 };
+
 function translateWord(){
 let w=document.getElementById('jword').value.trim().toLowerCase();
 document.getElementById('jresult').textContent=words[w]||'Word bhetiyena. Spelling check gara.';
 }
+
 function renderWords(){
 let box=document.getElementById('wordlist');
 Object.keys(words).forEach(w=>{
@@ -177,11 +210,13 @@ b.onclick=()=>{document.getElementById('jword').value=w;translateWord()};
 box.appendChild(b);
 });
 }
+
 function getRecords(){
 try{return JSON.parse(localStorage.getItem('nabinSathiMoneyRecordsV1')||'[]')}catch(e){return []}
 }
 function yen(n){return '¥'+Number(n).toLocaleString('en-US')}
 function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
 function renderMoney(){
 let arr=getRecords(),inc=0,exp=0;
 arr.forEach(r=>{if(r.kind==='income')inc+=r.amount;else exp+=r.amount});
@@ -190,6 +225,7 @@ document.getElementById('expense').textContent=yen(exp);
 document.getElementById('balance').textContent=yen(inc-exp);
 document.getElementById('records').innerHTML=arr.map((r,i)=>'<div class="result">'+(r.kind==='income'?'➕ ':'➖ ')+yen(r.amount)+' — '+safe(r.desc)+'<br><span class="small">'+safe(r.date)+'</span> <button onclick="deleteMoney('+i+')">Delete</button></div>').reverse().join('');
 }
+
 function addMoney(){
 let amount=Number(document.getElementById('amount').value),desc=document.getElementById('desc').value.trim();
 if(!Number.isFinite(amount)||amount<=0){alert('Amount halnu hai bro.');return}
@@ -197,20 +233,28 @@ let arr=getRecords();
 arr.push({kind:document.getElementById('kind').value,amount,desc:desc||'No description',date:new Date().toLocaleDateString()});
 try{
 localStorage.setItem('nabinSathiMoneyRecordsV1',JSON.stringify(arr));
-renderMoney();document.getElementById('amount').value='';document.getElementById('desc').value='';
+renderMoney();
+document.getElementById('amount').value='';
+document.getElementById('desc').value='';
 alert('Record saved!');
 }catch(e){alert('Browser le data save garna diyena.')}
 }
+
 function deleteMoney(i){
 let arr=getRecords();arr.splice(i,1);
-localStorage.setItem('nabinSathiMoneyRecordsV1',JSON.stringify(arr));renderMoney();
+localStorage.setItem('nabinSathiMoneyRecordsV1',JSON.stringify(arr));
+renderMoney();
 }
+
 function clearMoney(){
 if(confirm('Sabai records delete garne?')){
-localStorage.setItem('nabinSathiMoneyRecordsV1','[]');renderMoney();
+localStorage.setItem('nabinSathiMoneyRecordsV1','[]');
+renderMoney();
 }
 }
-renderWords();renderMoney();
+
+renderWords();
+renderMoney();
 </script>
 </body>
 </html>
