@@ -1,317 +1,353 @@
 
-<!DOCTYPE html>
-<html lang="ne">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#080f20">
-<meta name="description" content="NABIN SATHI — Japan ma Nepali haruko lagi job search, Japanese learning, money tracker ra scam safety.">
-<title>NABIN SATHI — Japan Life Helper</title>
-<style>
-:root{color-scheme:dark;--bg:#080f20;--panel:#111d32;--line:#ffffff16;--text:#f8fafc;--muted:#a8b8d0;--teal:#2dd4bf;--radius:20px}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at top left,#123b52 0,transparent 42%),radial-gradient(ellipse at bottom right,#123c35 0,transparent 38%),var(--bg);color:var(--text);line-height:1.6}
-button,input,select{font:inherit}
-button,a,select{-webkit-tap-highlight-color:transparent}
-a{color:inherit}
-header{padding:calc(30px + env(safe-area-inset-top)) 18px 26px;background:linear-gradient(135deg,#1d4ed8,#0d9488);border-radius:0 0 28px 28px;box-shadow:0 12px 40px #0004}
-.header-inner{max-width:900px;margin:auto}
-.brand{display:flex;align-items:center;gap:12px}
-.brand-icon{display:grid;place-items:center;width:54px;height:54px;border-radius:17px;background:#ffffff20;border:1px solid #ffffff40;font-size:27px;flex-shrink:0}
-header h1{font-size:clamp(25px,6vw,34px);line-height:1.2;margin:0}
-header p{margin:8px 0 0;color:#e0f2fe}
-main{width:min(900px,100%);margin:auto;padding:18px 13px 30px}
-.welcome,.panel{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,#ffffff0d,#ffffff05);box-shadow:0 8px 28px #00000012}
-.welcome{padding:20px;margin-bottom:17px}
-.welcome h2{margin:0 0 6px;font-size:23px}
-.welcome p{margin:0;color:#d4e2f4}
-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0 20px}
-.nav-btn{text-align:left;min-height:62px;display:flex;align-items:center;gap:10px;padding:13px 12px;border:1px solid var(--line);border-radius:16px;background:#ffffff09;color:var(--text);font-weight:700;cursor:pointer}
-.nav-btn .nav-icon{font-size:23px}
-.nav-btn.active,.nav-btn[aria-current="page"]{border-color:#2dd4bf90;background:#0d948822}
-.nav-btn:active,button:active{transform:scale(.985)}
-.panel{display:none;padding:19px 15px;margin:0 0 18px;background:linear-gradient(145deg,#14233a,#0d182a)}
-.panel.active{display:block;animation:appear .2s ease-out}
-@keyframes appear{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
-h2{font-size:22px;line-height:1.3;margin:0 0 12px}
-h3{font-size:16px;line-height:1.4;margin:18px 0 8px}
-p{overflow-wrap:anywhere}
-.muted,.small{color:var(--muted)}
-.small{font-size:12px;line-height:1.6}
-label{display:block;font-size:13px;font-weight:650;color:#cbd5e1;margin-top:10px}
-input,select{width:100%;min-height:47px;padding:12px 13px;margin:6px 0 8px;border:1px solid #40516d;border-radius:12px;background:#081326;color:var(--text);font-size:16px}
-input::placeholder{color:#8292aa}
-input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-button,.link{display:inline-flex;justify-content:center;align-items:center;gap:7px;min-height:43px;padding:11px 14px;margin:3px 3px 3px 0;border:1px solid var(--line);border-radius:12px;background:#ffffff0c;color:var(--text);font-size:14px;font-weight:700;text-decoration:none;cursor:pointer}
-button.primary,.primary{color:white;border:0;background:linear-gradient(135deg,#0d9488,#0f766e)}
-button.secondary{background:#ffffff08}
-button.danger{border-color:#f8717140;color:#fca5a5}
-.full{width:100%;margin:7px 0}
-.grid2{display:grid;grid-template-columns:1fr;gap:0}
-.result,.jobcard{padding:14px;margin:10px 0;background:#081426;border:1px solid #ffffff12;border-radius:15px;line-height:1.65;overflow-wrap:anywhere;white-space:pre-wrap}
-.jobcard h3{margin:0 0 6px}
-.jobcard p{margin:7px 0}
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.pill{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;background:#0d948822;color:#99f6e4;font-size:11px;font-weight:700}
-.notice{padding:13px;border-radius:13px;background:#f59e0b10;border:1px solid #f59e0b45;font-size:13px;line-height:1.7}
-.success-note{padding:12px;border-radius:12px;background:#0d948818;border:1px solid #2dd4bf40;font-size:13px}
-.stats{display:grid;grid-template-columns:1fr;gap:9px;margin:13px 0}
-.stat{padding:13px;border:1px solid var(--line);background:#ffffff07;border-radius:14px}
-.stat .value{font-size:20px;font-weight:800;overflow-wrap:anywhere}
-.stat .label{font-size:12px;color:var(--muted)}
-.dev-card{text-align:center;padding:22px 14px;background:linear-gradient(145deg,#172c48,#102b2b);border:1px solid var(--line);border-radius:18px;margin:14px 0}
-.dev-avatar{width:76px;height:76px;border-radius:24px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2563eb,#0d9488);font-size:28px;font-weight:800}
-.dev-name{font-size:21px;font-weight:800;letter-spacing:1px;margin:8px 0}
-.dev-role{color:#5eead4;font-weight:700}
-footer{text-align:center;color:#94a3b8;padding:24px 8px 12px;font-size:12px}
-@media(min-width:540px){main{padding:22px 18px 35px}nav{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{padding:23px}.grid2{grid-template-columns:1fr 1fr;gap:0 14px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
-<header><div class="header-inner"><div class="brand"><div class="brand-icon" aria-hidden="true">🇳🇵</div><div><h1>NABIN SATHI</h1><p>Nepali ko Japan Life Helper 🇯🇵</p></div></div></div></header>
+/* NABIN SATHI: Automatic Japan location dropdowns.
+   Add this block immediately before the existing </script>. */
 
-<main>
-<div class="welcome"><h2>Namaste bro! 👋</h2><p>Japan maa job, Japanese ra paisa manage garna timro sathi ❤️</p></div>
+(async function initJapanLocationFields() {
+  const form = document.getElementById("jobForm");
+  const pref = document.getElementById("pref");
+  const city = document.getElementById("city");
+  const ward = document.getElementById("ward");
+  const station = document.getElementById("station");
+  const line = document.getElementById("line");
 
-<nav aria-label="Main navigation">
-<button class="nav-btn active" data-section="chat" aria-current="page" onclick="show('chat')"><span class="nav-icon">🤖</span><span>AI Chat</span></button>
-<button class="nav-btn" data-section="jobs" onclick="show('jobs')"><span class="nav-icon">💼</span><span>Job Helper</span></button>
-<button class="nav-btn" data-section="japanese" onclick="show('japanese')"><span class="nav-icon">🇯🇵</span><span>Japanese Buddy</span></button>
-<button class="nav-btn" data-section="money" onclick="show('money')"><span class="nav-icon">💴</span><span>Money Tracker</span></button>
-<button class="nav-btn" data-section="safety" onclick="show('safety')"><span class="nav-icon">🛡️</span><span>Scam Safety</span></button>
-<button class="nav-btn" data-section="developers" onclick="show('developers')"><span class="nav-icon">👨‍💻</span><span>Developer</span></button>
-</nav>
+  if (!form || !pref || !city || !ward || !station || !line) return;
 
-<section id="chat" class="panel active">
-<h2>🤖 NABIN SATHI Chat</h2>
-<div id="chatlog" class="result" role="log" aria-live="polite">Namaste bro! 😊 Job, Japanese wa paisa bare sodha hai.</div>
-<label for="message">Timro question</label>
-<input id="message" maxlength="500" placeholder="Nepali maa question lekh..." autocomplete="off">
-<button class="primary full" onclick="chat()">Send ➤</button>
-<p class="small">अहिले demo mode हो। वास्तविक AI चलाउन सुरक्षित backend/API setup आवश्यक छ।</p>
-</section>
+  const prefectures = {
+    "Hokkaido":"北海道", "Aomori":"青森県",
+    "Iwate":"岩手県", "Miyagi":"宮城県",
+    "Akita":"秋田県", "Yamagata":"山形県",
+    "Fukushima":"福島県", "Ibaraki":"茨城県",
+    "Tochigi":"栃木県", "Gunma":"群馬県",
+    "Saitama":"埼玉県", "Chiba":"千葉県",
+    "Tokyo":"東京都", "Kanagawa":"神奈川県",
+    "Niigata":"新潟県", "Toyama":"富山県",
+    "Ishikawa":"石川県", "Fukui":"福井県",
+    "Yamanashi":"山梨県", "Nagano":"長野県",
+    "Gifu":"岐阜県", "Shizuoka":"静岡県",
+    "Aichi":"愛知県", "Mie":"三重県",
+    "Shiga":"滋賀県", "Kyoto":"京都府",
+    "Osaka":"大阪府", "Hyogo":"兵庫県",
+    "Nara":"奈良県", "Wakayama":"和歌山県",
+    "Tottori":"鳥取県", "Shimane":"島根県",
+    "Okayama":"岡山県", "Hiroshima":"広島県",
+    "Yamaguchi":"山口県", "Tokushima":"徳島県",
+    "Kagawa":"香川県", "Ehime":"愛媛県",
+    "Kochi":"高知県", "Fukuoka":"福岡県",
+    "Saga":"佐賀県", "Nagasaki":"長崎県",
+    "Kumamoto":"熊本県", "Oita":"大分県",
+    "Miyazaki":"宮崎県", "Kagoshima":"鹿児島県",
+    "Okinawa":"沖縄県"
+  };
 
-<section id="jobs" class="panel">
-<h2>💼 Japan Nationwide Job Search</h2>
-<p class="muted">Prefecture, city, ward, station ra train line anusar job search links banaau.</p>
+  function replaceWithSelect(oldInput, labelText, placeholder) {
+    const select = document.createElement("select");
+    select.id = oldInput.id;
+    select.setAttribute("aria-label", labelText);
+    select.innerHTML = "";
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
+    oldInput.replaceWith(select);
+    return select;
+  }
 
-<form id="jobForm">
-<div class="grid2">
-<div><label for="pref">📍 Prefecture (県)</label>
-<select id="pref">
-<option value="">Japan bhar / All Japan</option>
-<option>Hokkaido</option><option>Aomori</option><option>Iwate</option><option>Miyagi</option><option>Akita</option><option>Yamagata</option><option>Fukushima</option><option>Ibaraki</option><option>Tochigi</option><option>Gunma</option><option>Saitama</option><option>Chiba</option><option>Tokyo</option><option>Kanagawa</option><option>Niigata</option><option>Toyama</option><option>Ishikawa</option><option>Fukui</option><option>Yamanashi</option><option>Nagano</option><option>Gifu</option><option>Shizuoka</option><option>Aichi</option><option>Mie</option><option>Shiga</option><option>Kyoto</option><option>Osaka</option><option>Hyogo</option><option>Nara</option><option>Wakayama</option><option>Tottori</option><option>Shimane</option><option>Okayama</option><option>Hiroshima</option><option>Yamaguchi</option><option>Tokushima</option><option>Kagawa</option><option>Ehime</option><option>Kochi</option><option>Fukuoka</option><option>Saga</option><option>Nagasaki</option><option>Kumamoto</option><option>Oita</option><option>Miyazaki</option><option>Kagoshima</option><option>Okinawa</option>
-</select></div>
+  function fillSelect(select, items, getValue, getLabel, placeholder) {
+    const previous = select.value;
+    select.replaceChildren();
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
 
-<div><label for="city">🏙️ City (市)</label><input id="city" maxlength="100" placeholder="Yokohama, Kawasaki..." autocomplete="off"></div>
-<div><label for="ward">🏘️ Ward / Area (区・町・村)</label><input id="ward" maxlength="100" placeholder="Naka-ku, Shinjuku-ku..." autocomplete="off"></div>
-<div><label for="station">🚉 Station name (駅)</label><input id="station" maxlength="100" placeholder="Ishikawacho, Kannai..." autocomplete="off"></div>
-<div><label for="line">🚆 Train line (路線)</label><input id="line" maxlength="100" placeholder="JR Negishi Line, Keikyu..." autocomplete="off"></div>
-<div><label for="jobtype">💼 Job type</label>
-<select id="jobtype">
-<option value="">All job types</option><option value="倉庫">Warehouse / 倉庫</option><option value="仕分け">Parcel sorting / 仕分け</option><option value="梱包">Packing / 梱包</option><option value="食品工場">Food factory / 食品工場</option><option value="弁当">Bento packing / 弁当</option><option value="清掃">Cleaning / 清掃</option><option value="ホテル">Hotel / ホテル</option><option value="コンビニ">Convenience store / コンビニ</option><option value="飲食店">Restaurant / 飲食店</option><option value="データ入力">Data entry / データ入力</option><option value="引越し">Moving / 引越し</option><option value="Amazon 倉庫">Amazon warehouse</option><option value="ヤマト 仕分け">Yamato sorting</option><option value="フォークリフト">Forklift / フォークリフト</option><option value="介護">Care work / 介護</option><option value="工場">Factory / 工場</option>
-</select></div>
-<div><label for="shift">🌙 Shift</label><select id="shift"><option value="">Any shift</option><option value="日勤">Day shift / 日勤</option><option value="夜勤">Night shift / 夜勤</option><option value="夕勤">Evening shift / 夕勤</option><option value="早朝">Early morning / 早朝</option></select></div>
-<div><label for="wage">💴 Minimum hourly wage</label><select id="wage"><option value="">Any wage</option><option value="1200">¥1,200 per hour</option><option value="1300">¥1,300 per hour</option><option value="1400">¥1,400 per hour</option><option value="1500">¥1,500 per hour</option><option value="1600">¥1,600 per hour</option><option value="1800">¥1,800 per hour</option></select></div>
-<div><label for="employment">📝 Employment type</label><select id="employment"><option value="">All employment types</option><option value="アルバイト">Part-time / アルバイト</option><option value="パート">Part / パート</option><option value="正社員">Full-time / 正社員</option><option value="派遣">Dispatch / 派遣</option><option value="短期">Short-term / 短期</option></select></div>
-</div>
-<button class="primary full" type="submit">🔎 Search Jobs</button>
-<button class="secondary full" type="button" onclick="resetJobs()">Reset filters</button>
-</form>
+    items.forEach(item => {
+      const option = document.createElement("option");
+      option.value = getValue(item);
+      option.textContent = getLabel(item);
+      select.appendChild(option);
+    });
 
-<div class="notice">⚠️ यी बाहिरी job-search links हुन्, पुष्टि भएका vacancy cards होइनन्। कम्पनी, तलब, shift, visa eligibility र आवेदनको मिति मूल listing मा जाँच्नुहोस्। Ward, station र train line का नाम आफैँ टाइप गर्न सकिन्छ; पूर्ण verified nationwide station database जोडिएको छैन।</div>
-<h3>🔎 Job search results</h3>
-<div id="jobresults" aria-live="polite"><div class="jobcard"><h3>🇯🇵 Japan-wide job search</h3><p>Location र filters छानेर Search Jobs थिच्नुहोस्।</p></div></div>
-<h3>🌐 Popular job websites</h3>
-<a class="link" target="_blank" rel="noopener noreferrer" href="https://jp.indeed.com/">Indeed Japan ↗</a>
-<a class="link" target="_blank" rel="noopener noreferrer" href="https://townwork.net/">Townwork ↗</a>
-<a class="link" target="_blank" rel="noopener noreferrer" href="https://www.hellowork.mhlw.go.jp/">Hello Work ↗</a>
-<a class="link" target="_blank" rel="noopener noreferrer" href="https://baito.mynavi.jp/">Mynavi Baito ↗</a>
-<div class="result">💡 Job pauna advance paisa napathaau. Student visa ko work permission ra kaam garna milne hour limit follow gara.</div>
-</section>
+    if ([...select.options].some(o => o.value === previous)) {
+      select.value = previous;
+    }
+  }
 
-<section id="japanese" class="panel">
-<h2>🇯🇵 Japanese Buddy</h2><label for="jword">Japanese word (romaji)</label><input id="jword" maxlength="100" placeholder="Example: arigatou" autocomplete="off"><button class="primary full" onclick="translateWord()">Meaning hera</button><div id="jresult" class="result" aria-live="polite">Nepali meaning yaha aauchha.</div><h3>Useful words</h3><p class="small">Word thichera meaning herna sakchhau.</p><div id="wordlist"></div>
-</section>
+  // Show prefecture names in English and Japanese.
+  [...pref.options].forEach(option => {
+    const jp = prefectures[option.value];
+    if (jp) option.textContent = option.value + " / " + jp;
+  });
 
-<section id="money" class="panel">
-<h2>💴 Money Tracker</h2><p class="muted">Income ra expenses record gara. Currency Japanese yen (¥) ho.</p>
-<label for="kind">Income wa Expense</label><select id="kind"><option value="income">Income (+)</option><option value="expense">Expense (-)</option></select>
-<label for="amount">Amount (¥)</label><input id="amount" type="number" min="1" max="1000000000" step="1" inputmode="numeric" placeholder="Example: 100000">
-<label for="desc">Description</label><input id="desc" maxlength="150" placeholder="Salary, rent, food...">
-<button class="primary full" onclick="addMoney()">Save record</button>
-<div class="stats"><div class="stat"><div class="label">Income</div><div class="value" id="income">¥0</div></div><div class="stat"><div class="label">Expense</div><div class="value" id="expense">¥0</div></div><div class="stat"><div class="label">Balance</div><div class="value" id="balance">¥0</div></div></div>
-<h3>Your records</h3><div id="records"></div><button class="danger" onclick="clearMoney()">Delete all records</button>
-<p class="small">Data yo browser maa matra save hunchha. Browser data clear bhaye wa device/browser change gare data harna sakchha.</p>
-</section>
+  // Convert manually typed fields into dropdowns.
+  const citySelect = replaceWithSelect(
+    city, "City / 市", "Select city / 市を選択"
+  );
+  const wardSelect = replaceWithSelect(
+    ward, "Ward / 区", "Select ward / 区を選択"
+  );
+  const stationSelect = replaceWithSelect(
+    station, "Station / 駅", "Select station / 駅を選択"
+  );
+  const lineSelect = replaceWithSelect(
+    line, "Train line / 路線", "Select train line / 路線を選択"
+  );
 
-<section id="safety" class="panel">
-<h2>🛡️ Scam Safety</h2><div class="result">✅ Company ko naam, address ra contract verify gara.</div><div class="result">🚫 Job pauna advance fee napathaau.</div><div class="result">💴 Salary, overtime ra payment date pahilai sodha.</div><div class="result">🔐 Bank password, PIN ra verification code nadeu.</div><div class="result">📄 Kaam agadi visa ko work permission bujha.</div><div class="result">🔗 Unknown links ma personal details wa bank information nahala.</div>
-</section>
+  // Add postal code and full address fields.
+  const jobTypeContainer = document.getElementById("jobtype")?.parentElement;
+  const grid = jobTypeContainer?.parentElement;
+  if (!grid) return;
 
-<section id="developers" class="panel">
-<h2>👨‍💻 Developer</h2>
-<div class="dev-card"><div class="dev-avatar">BN</div><div class="dev-name">BOHARA NABIN</div><p class="dev-role">Founder &amp; Developer 🇳🇵</p><p>Creator of NABIN SATHI</p><p class="small">Building helpful tools for Nepali people in Japan.</p></div>
-<p class="small" style="text-align:center">Thank you for using NABIN SATHI ❤️</p>
-</section>
+  function addField(id, labelText, placeholder, maxLength = 150) {
+    const wrap = document.createElement("div");
+    const label = document.createElement("label");
+    label.htmlFor = id;
+    label.textContent = labelText;
 
-<footer>NABIN SATHI · Made with ❤️ for Nepali people in Japan</footer>
-</main>
+    const input = document.createElement("input");
+    input.id = id;
+    input.placeholder = placeholder;
+    input.maxLength = maxLength;
+    input.autocomplete = "off";
 
-<script>
-"use strict";
+    wrap.append(label, input);
+    grid.insertBefore(wrap, jobTypeContainer);
+    return input;
+  }
 
-function show(id){
- const section=document.getElementById(id);if(!section)return;
- document.querySelectorAll("main .panel").forEach(s=>s.classList.remove("active"));
- section.classList.add("active");
- document.querySelectorAll(".nav-btn").forEach(b=>{
-  const selected=b.dataset.section===id;b.classList.toggle("active",selected);
-  if(selected)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");
- });
- window.scrollTo({top:0,behavior:"smooth"});
-}
+  const postal = addField(
+    "postalCode", "📮 Postal Code / 郵便番号",
+    "231-0862"
+  );
+  postal.inputMode = "numeric";
+  postal.maxLength = 8;
 
-/* Demo replies only. Real AI requires a secure backend endpoint. */
-function chat(){
- const input=document.getElementById("message"),message=input.value.trim();if(!message)return;
- const text=message.toLowerCase();let answer="Ma demo chat ho bro. Job, Japanese ra paisa ko lagi tala ko tools use gara.";
- if(text.includes("job")||text.includes("काम")||text.includes("kam"))answer="Job Helper kholera prefecture, city, ward, station, train line ra job filters chhana ani Search Jobs thicha.";
- else if(text.includes("japanese")||text.includes("nihongo"))answer="Japanese Buddy maa romaji word lekh ani Nepali meaning hera.";
- else if(text.includes("paisa")||text.includes("money")||text.includes("salary"))answer="Money Tracker maa income ra expense save gara. Purana records browser maa save hunchhan.";
- else if(text.includes("namaste")||text.includes("hello"))answer="Namaste bro! 😊 NABIN SATHI maa swagat chha!";
- else if(text.includes("scam")||text.includes("fraud"))answer="Job pauna advance fee napathaau. Company ra contract verify gara. Scam Safety section hera.";
- const log=document.getElementById("chatlog");log.textContent+="\n\nTimi: "+message+"\nNABIN SATHI: "+answer;input.value="";log.scrollTop=log.scrollHeight;
-}
-document.getElementById("message").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();chat();}});
+  const address = addField(
+    "fullAddress", "📍 Full Address / 住所",
+    "Address will appear after postal-code lookup."
+  );
+  address.readOnly = true;
 
-function searchJobs(event){
- if(event)event.preventDefault();
- const get=id=>document.getElementById(id).value.trim();
- const pref=get("pref"),city=get("city"),ward=get("ward"),station=get("station"),line=get("line");
- const type=get("jobtype"),shift=get("shift"),wage=get("wage"),employment=get("employment");
- const location=[station,ward,city,pref].filter(Boolean).join(" ");
- const terms=[type,shift,employment].filter(Boolean);
- if(line)terms.push(line);
- if(station)terms.push(station);
- if(wage)terms.push("時給"+wage+"円以上");
- terms.push("求人");
- const query=terms.join(" ");
- const encodedQuery=encodeURIComponent(query),encodedLocation=encodeURIComponent(location);
- const combined=[query,location,line].filter(Boolean).join(" ");
- const results=[
-  {name:"Indeed Japan",desc:"求人検索：会社・給与・勤務条件を確認",url:"https://jp.indeed.com/jobs?q="+encodeURIComponent(combined)+"&l="+encodedLocation},
-  {name:"Townwork",desc:"アルバイト・パートなどの求人検索",url:"https://www.google.com/search?q="+encodeURIComponent("site:townwork.net "+combined)},
-  {name:"Mynavi Baito",desc:"アルバイト求人検索",url:"https://www.google.com/search?q="+encodeURIComponent("site:baito.mynavi.jp "+combined)},
-  {name:"Hello Work",desc:"Public employment service को job search",url:"https://www.google.com/search?q="+encodeURIComponent("site:hellowork.mhlw.go.jp "+combined)}
- ];
- const box=document.getElementById("jobresults");box.replaceChildren();
- const heading=document.createElement("div");heading.className="result";
- heading.textContent="🔎 Location: "+(location||"All Japan")+" · Train line: "+(line||"Any")+" · Search: "+query;
- box.appendChild(heading);
- results.forEach(r=>{
-  const card=document.createElement("article");card.className="jobcard";
-  const top=document.createElement("div");top.className="card-top";
-  const title=document.createElement("h3");title.textContent="💼 "+r.name;
-  const pill=document.createElement("span");pill.className="pill";pill.textContent="Search link";
-  top.append(title,pill);
-  const desc=document.createElement("p");desc.textContent=r.desc;
-  const link=document.createElement("a");link.className="link primary";link.href=r.url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="Vacancies खोज्नुहोस् ↗";
-  card.append(top,desc,link);box.appendChild(card);
- });
- const note=document.createElement("p");note.className="small";
- note.textContent="यी बाहिरी खोज links हुन्, पुष्टि भएका vacancy होइनन्। Minimum wage, location र train line बाहिरी वेबसाइटले पूर्ण रूपमा पालना गरेको ग्यारेन्टी हुँदैन। मूल listing मा विवरण जाँच्नुहोस्.";
- box.appendChild(note);return false;
-}
-document.getElementById("jobForm").addEventListener("submit",searchJobs);
+  const status = document.createElement("p");
+  status.className = "small";
+  status.id = "locationStatus";
+  status.setAttribute("aria-live", "polite");
+  grid.insertBefore(status, jobTypeContainer);
 
-function resetJobs(){
- document.getElementById("jobForm").reset();const box=document.getElementById("jobresults");box.replaceChildren();
- const card=document.createElement("div");card.className="jobcard";
- const title=document.createElement("h3");title.textContent="🇯🇵 Japan-wide job search";
- const p=document.createElement("p");p.textContent="Location र filters छानेर Search Jobs थिच्नुहोस्.";
- card.append(title,p);box.appendChild(card);
-}
+  let addressData = [];
+  let linesData = [];
 
-const words={
- "arigatou":"ありがとう — धन्यवाद","arigatou gozaimasu":"ありがとうございます — धेरै धन्यवाद",
- "ohayou":"おはよう — शुभ प्रभात","ohayou gozaimasu":"おはようございます — शुभ प्रभात",
- "konnichiwa":"こんにちは — नमस्ते","konbanwa":"こんばんは — शुभ साँझ",
- "sumimasen":"すみません — माफ गर्नुहोस्","shigoto":"しごと（仕事）— काम",
- "yasumi":"やすみ（休み）— बिदा","genki":"げんき（元気）— सन्चै",
- "gakkou":"がっこう（学校）— स्कूल","benkyou":"べんきょう（勉強）— पढाइ",
- "okane":"おかね（お金）— पैसा","daijoubu":"だいじょうぶ — ठीक छ",
- "tasukete":"たすけて — मद्दत गर्नुहोस्","hai":"はい — हो","iie":"いいえ — होइन",
- "mizu":"みず（水）— पानी","tomodachi":"ともだち（友達）— साथी",
- "onegaishimasu":"おねがいします — कृपया","ikura":"いくら — कति पैसा?",
- "eki":"えき（駅）— स्टेशन","byouin":"びょういん（病院）— अस्पताल",
- "kaisha":"かいしゃ（会社）— कम्पनी","sensei":"せんせい（先生）— शिक्षक",
- "namae":"なまえ（名前）— नाम","densha":"でんしゃ（電車）— रेल",
- "tabemasu":"たべます（食べます）— खान्छु","nomimasu":"のみます（飲みます）— पिउँछु",
- "wakarimashita":"わかりました — बुझें","wakarimasen":"わかりません — बुझिनँ",
- "otsukaresama":"おつかれさま — मेहनत गर्नुभयो","ganbatte":"がんばって — मेहनत गर / शुभकामना"
-};
-function translateWord(){
- const word=document.getElementById("jword").value.trim().toLowerCase().replace(/\s+/g," ");
- document.getElementById("jresult").textContent=words[word]||"Word bhetiyena. Spelling check gara.";
-}
-document.getElementById("jword").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();translateWord();}});
-function renderWords(){
- const box=document.getElementById("wordlist");box.replaceChildren();
- Object.keys(words).forEach(word=>{
-  const b=document.createElement("button");b.type="button";b.className="secondary";b.textContent=word;
-  b.addEventListener("click",()=>{document.getElementById("jword").value=word;translateWord();});box.appendChild(b);
- });
-}
+  function setStatus(message) {
+    status.textContent = message;
+  }
 
-/* Keep this key unchanged so existing Money Tracker records remain accessible. */
-const MONEY_KEY="nabinSathiMoneyRecordsV1";
-function getRecords(){
- try{
-  const data=JSON.parse(localStorage.getItem(MONEY_KEY)||"[]");if(!Array.isArray(data))return [];
-  return data.filter(r=>r&&(r.kind==="income"||r.kind==="expense")&&Number.isFinite(Number(r.amount))&&Number(r.amount)>0)
-   .map(r=>({kind:r.kind,amount:Number(r.amount),desc:String(r.desc??"No description"),date:String(r.date??"")}));
- }catch(error){console.error("Could not read money records:",error);return [];}
-}
-function yen(value){return "¥"+Math.round(Number(value)||0).toLocaleString("en-US");}
-function saveRecords(records){
- try{localStorage.setItem(MONEY_KEY,JSON.stringify(records));return true;}
- catch(error){console.error("Could not save money records:",error);alert("Browser le data save garna sakena. Storage full wa unavailable huna sakchha.");return false;}
-}
-function renderMoney(){
- const records=getRecords();let income=0,expense=0;
- records.forEach(r=>{if(r.kind==="income")income+=r.amount;else expense+=r.amount;});
- document.getElementById("income").textContent=yen(income);
- document.getElementById("expense").textContent=yen(expense);
- document.getElementById("balance").textContent=yen(income-expense);
- const box=document.getElementById("records");box.replaceChildren();
- if(!records.length){const empty=document.createElement("div");empty.className="result";empty.textContent="Ahile record chaina. Mathi bata pahilo record save gara.";box.appendChild(empty);return;}
- records.map((record,index)=>({record,index})).reverse().forEach(({record,index})=>{
-  const card=document.createElement("div");card.className="result";
-  const title=document.createElement("div");title.style.fontWeight="750";title.textContent=(record.kind==="income"?"➕ ":"➖ ")+yen(record.amount);
-  const desc=document.createElement("div");desc.textContent=record.desc;
-  const date=document.createElement("div");date.className="small";date.textContent=record.date;
-  const remove=document.createElement("button");remove.className="danger";remove.type="button";remove.textContent="Delete";remove.addEventListener("click",()=>deleteMoney(index));
-  card.append(title,desc,date,remove);box.appendChild(card);
- });
-}
-function addMoney(){
- const amount=Number(document.getElementById("amount").value),desc=document.getElementById("desc").value.trim();
- if(!Number.isSafeInteger(amount)||amount<=0||amount>1000000000){alert("Amount 1 dekhi ¥1,000,000,000 samma ko whole yen number halnu hai bro.");return;}
- const records=getRecords();records.push({kind:document.getElementById("kind").value,amount,desc:desc||"No description",date:new Date().toLocaleDateString("ja-JP")});
- if(saveRecords(records)){document.getElementById("amount").value="";document.getElementById("desc").value="";renderMoney();alert("Record saved!");}
-}
-function deleteMoney(index){
- const records=getRecords();if(index<0||index>=records.length)return;
- if(!confirm("Yo record delete garne?"))return;records.splice(index,1);if(saveRecords(records))renderMoney();
-}
-function clearMoney(){
- if(!confirm("Sabai money records permanently delete garne? Yo action undo garna mildaina."))return;
- if(saveRecords([]))renderMoney();
-}
-renderWords();renderMoney();
-</script>
-</body>
-</html>
+  function resetCityAndWard() {
+    fillSelect(citySelect, [], x => x, x => x, "Select city / 市を選択");
+    fillSelect(wardSelect, [], x => x, x => x, "Select ward / 区を選択");
+  }
+
+  function matchingPref() {
+    const japaneseName = prefectures[pref.value];
+    return addressData.find(p => p.pref === japaneseName);
+  }
+
+  function loadCities() {
+    const selectedPref = matchingPref();
+    resetCityAndWard();
+
+    if (!selectedPref) return;
+
+    const cities = selectedPref.cities || [];
+    const uniqueCities = [...new Set(cities.map(x => x.city).filter(Boolean))];
+
+    fillSelect(
+      citySelect,
+      uniqueCities,
+      x => x,
+      x => x,
+      "Select city / 市を選択"
+    );
+    setStatus("City list loaded. Select a city.");
+  }
+
+  function loadWards() {
+    const selectedPref = matchingPref();
+    fillSelect(
+      wardSelect, [], x => x, x => x, "Select ward / 区を選択"
+    );
+
+    if (!selectedPref || !citySelect.value) return;
+
+    const wards = [...new Set(
+      (selectedPref.cities || [])
+        .filter(x => x.city === citySelect.value)
+        .map(x => x.ward)
+        .filter(Boolean)
+    )];
+
+    fillSelect(
+      wardSelect, wards, x => x, x => x,
+      wards.length ? "Select ward / 区を選択" : "No separate ward"
+    );
+  }
+
+  function loadLines() {
+    fillSelect(
+      lineSelect, linesData,
+      x => String(x.line_cd),
+      x => x.line_name,
+      "Select train line / 路線を選択"
+    );
+    fillSelect(
+      stationSelect, [], x => x, x => x,
+      "Choose a train line first"
+    );
+  }
+
+  async function loadStations() {
+    const selectedLine = linesData.find(
+      x => String(x.line_cd) === lineSelect.value
+    );
+
+    fillSelect(
+      stationSelect, [], x => x, x => x,
+      "Loading stations..."
+    );
+
+    if (!selectedLine) {
+      fillSelect(
+        stationSelect, [], x => x, x => x,
+        "Choose a train line first"
+      );
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://train.teraren.com/lines/" +
+        encodeURIComponent(selectedLine.line_cd) +
+        "/stations.json"
+      );
+      if (!response.ok) throw new Error("Station service unavailable");
+
+      const data = await response.json();
+      fillSelect(
+        stationSelect, data,
+        x => x.station_name,
+        x => x.station_name,
+        "Select station / 駅を選択"
+      );
+      setStatus("Station list loaded for " + selectedLine.line_name);
+    } catch (error) {
+      fillSelect(
+        stationSelect, [], x => x, x => x,
+        "Station list unavailable"
+      );
+      setStatus("Station service is unavailable. Try again later.");
+    }
+  }
+
+  async function lookupPostalCode() {
+    const code = postal.value.replace(/\D/g, "");
+    if (code.length !== 7) return;
+
+    setStatus("Looking up postal code...");
+    try {
+      const response = await fetch(
+        "https://zipcloud.ibsnet.co.jp/api/search?zipcode=" +
+        encodeURIComponent(code)
+      );
+      if (!response.ok) throw new Error("Postal lookup failed");
+
+      const data = await response.json();
+      const result = data.results?.[0];
+      if (!result) {
+        setStatus("Postal code not found. Please check it.");
+        return;
+      }
+
+      address.value = [
+        result.address1, result.address2, result.address3
+      ].filter(Boolean).join("");
+
+      const englishPref = Object.keys(prefectures).find(
+        key => prefectures[key] === result.address1
+      );
+
+      if (englishPref) {
+        pref.value = englishPref;
+        loadCities();
+
+        if ([...citySelect.options].some(
+          o => o.value === result.address2
+        )) {
+          citySelect.value = result.address2;
+          loadWards();
+        }
+
+        const cityMatch = result.address2.match(/^(.+?市)(.+区)$/);
+        if (cityMatch) {
+          const possibleCity = cityMatch[1];
+          const possibleWard = cityMatch[2];
+
+          if ([...citySelect.options].some(
+            o => o.value === possibleCity
+          )) {
+            citySelect.value = possibleCity;
+            loadWards();
+            if ([...wardSelect.options].some(
+              o => o.value === possibleWard
+            )) {
+              wardSelect.value = possibleWard;
+            }
+          }
+        }
+      }
+
+      setStatus("Address found. Please verify the result.");
+    } catch (error) {
+      setStatus("Postal lookup failed. Check your internet connection.");
+    }
+  }
+
+  pref.addEventListener("change", loadCities);
+  citySelect.addEventListener("change", loadWards);
+  lineSelect.addEventListener("change", loadStations);
+  postal.addEventListener("change", lookupPostalCode);
+  postal.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      lookupPostalCode();
+    }
+  });
+
+  try {
+    setStatus("Loading Japan address and railway data...");
+
+    const [addressResponse, lineResponse] = await Promise.all([
+      fetch("https://japanese-addresses-v2.geoloniamaps.com/api/ja.json"),
+      fetch("https://train.teraren.com/lines.json")
+    ]);
+
+    if (!addressResponse.ok || !lineResponse.ok) {
+      throw new Error("Data service unavailable");
+    }
+
+    const addressJson = await addressResponse.json();
+    const lineJson = await lineResponse.json();
+
+    addressData = addressJson.data || [];
+    linesData = (Array.isArray(lineJson) ? lineJson : [])
+      .filter(x => x.line_cd && x.line_name)
+      .sort((a, b) => a.line_name.localeCompare(b.line_name, "ja"));
+
+    loadCities();
+    loadLines();
+    setStatus(
+      "Location lists loaded. Select a prefecture, city and train line."
+    );
+  } catch (error) {
+    setStatus(
+      "Automatic lists could not load. Check internet/API availability."
+    );
+  }
+})();
